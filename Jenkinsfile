@@ -19,7 +19,6 @@ pipeline {
             }
         }
 
-
         stage('Build Docker Image') {
             steps {
                 script {
@@ -47,11 +46,11 @@ pipeline {
                 '''
             }
         }
-    }
 
-    post {
-        always {
-            cleanWs()
+        stage('Cleanup Workspace') {
+            steps {
+                sh 'rm -rf *'
+            }
         }
     }
 }
